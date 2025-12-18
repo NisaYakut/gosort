@@ -30,7 +30,7 @@ const (
 	// Used only for -d output directory naming:
 	firstName = "nisa"
 	surname   = "yakut"
-	studentID = "YOUR_STUDENT_ID_HERE"
+	studentID = "231ADB107"
 
 	// Random range (documented): integers in [-1000, 1000]
 	randMin = -1000
@@ -159,7 +159,9 @@ type minHeap []item
 func (h minHeap) Len() int           { return len(h) }
 func (h minHeap) Less(i, j int) bool { return h[i].value < h[j].value }
 func (h minHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
-func (h *minHeap) Push(x interface{}) { *h = append(*h, x.(item)) }
+func (h *minHeap) Push(x interface{}) {
+	*h = append(*h, x.(item))
+}
 func (h *minHeap) Pop() interface{} {
 	old := *h
 	n := len(old)
@@ -266,6 +268,7 @@ func processDirectory(dir string) error {
 		if len(nums) < 10 {
 			return fmt.Errorf("file %s has fewer than 10 numbers", e.Name())
 		}
+
 		chunks := makeChunks(nums)
 		sortChunksConcurrently(chunks)
 		sorted := mergeChunks(chunks)
